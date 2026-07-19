@@ -5,7 +5,7 @@ const SIZE = 100
 const HEIGHT = 20
 
 
-var noise = FastNoiseLite()
+var noise = FastNoiseLite.new()
 
 
 var height_map = []
@@ -61,3 +61,4 @@ func generate():
         "x",
         SIZE
     )
+

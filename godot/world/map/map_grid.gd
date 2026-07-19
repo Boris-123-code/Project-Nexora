@@ -1,5 +1,7 @@
 extends Node
 
+class_name MapGrid
+
 
 
 const MAP_WIDTH = 100
@@ -74,3 +76,4 @@ func set_terrain(
     if tile:
 
         tile.terrain = type
+
