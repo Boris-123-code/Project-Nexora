@@ -1,6 +1,5 @@
 extends Node
 
-class_name TurnManager
 
 
 var turn: int = 1

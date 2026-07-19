@@ -1,6 +1,5 @@
 extends Node
 
-class_name NexoraEngine
 
 
 var current_turn: int = 1
