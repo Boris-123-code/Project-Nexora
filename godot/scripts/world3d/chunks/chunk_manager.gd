@@ -1,42 +1,67 @@
-extends Node
+extends Node3D
 
 
-const CHUNK_SIZE = 32
+const VIEW_DISTANCE = 2
 
 
 var loaded_chunks = {}
 
 
 
-func load_chunk(x:int,y:int):
+func update_chunks(player_position:Vector3):
 
-    var id = Vector2i(x,y)
+    var chunk_x = floor(
+        player_position.x / 32
+    )
+
+    var chunk_z = floor(
+        player_position.z / 32
+    )
 
 
-    if loaded_chunks.has(id):
+    for x in range(
+        chunk_x - VIEW_DISTANCE,
+        chunk_x + VIEW_DISTANCE
+    ):
+
+        for z in range(
+            chunk_z - VIEW_DISTANCE,
+            chunk_z + VIEW_DISTANCE
+        ):
+
+            load_chunk(
+                Vector2i(x,z)
+            )
+
+
+
+func load_chunk(position:Vector2i):
+
+    if loaded_chunks.has(position):
         return
 
 
-    loaded_chunks[id] = true
+    var chunk = Node3D.new()
+
+    chunk.name = (
+        "Chunk_" +
+        str(position)
+    )
+
+
+    add_child(chunk)
+
+
+    loaded_chunks[position] = chunk
 
 
     print(
-        "Chunk loaded:",
-        id
+        "Loaded:",
+        position
     )
 
 
 
-func unload_chunk(x:int,y:int):
+func unload_far_chunks():
 
-    var id = Vector2i(x,y)
-
-
-    if loaded_chunks.has(id):
-
-        loaded_chunks.erase(id)
-
-        print(
-            "Chunk unloaded:",
-            id
-        )
+    pass
